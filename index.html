@@ -309,9 +309,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
-</script>
-<!-- Formulario con envío a Google Sheets -->
-<script>
+</script><script>
   document.getElementById("formDJL").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -328,25 +326,15 @@
     .then(res => res.json())
     .then(response => {
       if (response.success) {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Mensaje enviado!',
-          text: 'Gracias por contactarnos, te responderemos pronto.',
-          confirmButtonColor: '#004c8b'
-        });
-        document.getElementById("formDJL").reset();
+        Swal.fire("¡Mensaje enviado!", "Gracias por contactarnos. Te responderemos pronto.", "success");
+        this.reset();
       } else {
-        throw new Error(response.error || 'No se pudo enviar el formulario');
+        throw new Error("Error en el envío");
       }
     })
     .catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Hubo un problema al enviar el mensaje.',
-        confirmButtonColor: '#004c8b'
-      });
-      console.error("Error:", error);
+      Swal.fire("Error", "Hubo un problema al enviar el mensaje.", "error");
+      console.error(error);
     });
   });
 </script>
