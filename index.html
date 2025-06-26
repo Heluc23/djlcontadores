@@ -79,29 +79,6 @@
       color: #dddddd;
     }
   </style>
-<style>
-  .card-bg-img {
-    background-image: url('https://i.imgur.com/rAKIwfg.jpeg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    color: white;
-  }
-
-  .card-bg-img::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* oscurece la imagen */
-    z-index: 1;
-  }
-
-  .card-bg-img .card-body {
-    position: relative;
-    z-index: 2;
-  }
-</style>
 </head>
 <body>
 
@@ -137,39 +114,68 @@
     <p class="mb-5">Expertos en asesoría contable, tributaria y financiera para pequeñas y medianas empresas.</p>
 
     <div class="row g-4">
-      <!-- Tarjeta 1 -->
+      <!-- Quiénes Somos -->
       <div class="col-md-4">
-        <div class="card text-white shadow-sm border-0" style="background-image: url('https://i.imgur.com/rAKIwfg.jpeg'); background-size: cover; background-position: center;">
-          <div class="card-body" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="card h-100 shadow-sm card-hover position-relative overflow-hidden text-white">
+          <div class="bg-image position-absolute top-0 start-0 w-100 h-100"></div>
+          <div class="card-body position-relative">
             <h5 class="card-title">¿Quiénes Somos?</h5>
-            <p class="card-text">En DJL Contadores somos un equipo de emprendedores bogotanos comprometidos con el crecimiento de otros emprededores. Nuestra razón de ser es acompañarte en el cumplimiento de tus obligaciones contables y tributarias, mientras te ayudamos a fortalecer la gestión de tu negocio.</p>
+            <p class="card-text">
+              En DJL Contadores somos un equipo de emprendedores bogotanos comprometidos con el crecimiento de otros emprededores.
+              Nuestra Razón de ser es acompañarte en el cumplimiento de tus obligaciones contables y tributarias, mientras te ayudamos a fortalecerla gestión de tu negocio.
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Tarjeta 2 -->
+      <!-- Misión -->
       <div class="col-md-4">
-        <div class="card text-white shadow-sm border-0" style="background-image: url('https://i.imgur.com/rAKIwfg.jpeg'); background-size: cover; background-position: center;">
-          <div class="card-body" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="card h-100 shadow-sm card-hover position-relative overflow-hidden text-white">
+          <div class="bg-image position-absolute top-0 start-0 w-100 h-100"></div>
+          <div class="card-body position-relative">
             <h5 class="card-title">Misión</h5>
-            <p class="card-text">Impulsar el crecimiento de nuestros clientes, fortaleciendo sus procesos contables, administrativos y tributarios. Queremos que se enfoquen en su actividad, mientras nosotros nos encargamos de que todo marche en orden, con compromiso, ética y precisión.</p>
+            <p class="card-text">
+              Impulsar el crecimiento de nuestros clientes, fortaleciendo sus procesos contables, administrativos y tributarios. Queremos que se enfoquen en su actividad, mientras nosotros nos encargamos de que todo marche en orden, con compromiso, ética y precisión.
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Tarjeta 3 -->
+      <!-- Visión -->
       <div class="col-md-4">
-        <div class="card text-white shadow-sm border-0" style="background-image: url('https://i.imgur.com/rAKIwfg.jpeg'); background-size: cover; background-position: center;">
-          <div class="card-body" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="card h-100 shadow-sm card-hover position-relative overflow-hidden text-white">
+          <div class="bg-image position-absolute top-0 start-0 w-100 h-100"></div>
+          <div class="card-body position-relative">
             <h5 class="card-title">Visión</h5>
-            <p class="card-text">Consolidarnos como una firma reconocida por su calidad humana, profesionalismo y cercanía con el cliente. En cinco años, buscamos ser un referente en el sector contable y tributario, destacándonos por generar valor real y relaciones duraderas con cada empresa que confía en nosotros.</p>
+            <p class="card-text">
+              Consolidarnos como una firma recconocida por su calidad humana, profesionalismo y cercanía con el cliente. En cinco años, buscamos ser un referente en el sector contable y tributario, destacándonos por generar valor real y relaciones duraderas con cada empresa que confía en nosotros.
+            </p>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
+
+<style>
+  .card-hover .bg-image {
+    background-image: url('https://i.imgur.com/rAKIwfg.jpeg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+    opacity: 0.5;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1;
+  }
+  .card-hover:hover .bg-image {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  .card-hover .card-body {
+    z-index: 2;
+    position: relative;
+  }
+</style>
 
   <section id="servicios" class="section" style="background-color: #f1f5fa;">
   <div class="container">
@@ -258,29 +264,21 @@
       <h2 class="text-center mb-4">Contáctanos</h2>
       <div class="row">
         <div class="col-lg-6 mx-auto">
-          <form name="formDJL" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="formDJL" />
-  <p class="d-none">
-    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-  </p>
-
-  <div class="mb-3">
-    <label for="nombre" class="form-label">Nombre</label>
-    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required />
-  </div>
-
-  <div class="mb-3">
-    <label for="correo" class="form-label">Correo electrónico</label>
-    <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@email.com" required />
-  </div>
-
-  <div class="mb-3">
-    <label for="mensaje" class="form-label">Mensaje</label>
-    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-  </div>
-
-  <button type="submit" class="btn btn-primary w-100" style="transition: transform 0.2s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">Enviar mensaje</button>
-</form>
+          <form id="formDJL">
+           <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required />
+           </div>
+  		   <div class="mb-3">
+    		<label for="correo" class="form-label">Correo electrónico</label>
+    		<input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@email.com" required />
+  		   </div>
+  		   <div class="mb-3">
+    		<label for="mensaje" class="form-label">Mensaje</label>
+    		<textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+           </div>
+  			<button type="submit" class="btn btn-primary w-100" style="transition: transform 0.2s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">Enviar mensaje</button>
+		</form>
         </div>
       </div>
       <div class="text-center mt-5">
@@ -311,28 +309,44 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
+</script>
+<!-- Formulario con envío a Google Sheets -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.forms["formDJL"];
+  document.getElementById("formDJL").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevenimos el envío normal
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
 
-      const data = new FormData(form);
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data).toString(),
-      })
-      .then(() => {
-        Swal.fire("¡Mensaje enviado!", "Gracias por contactarnos. Te responderemos pronto.", "success");
-        form.reset();
-      })
-      .catch((error) => {
-        Swal.fire("Error", "Hubo un problema al enviar el mensaje.", "error");
-        console.error("Error al enviar el formulario:", error);
+    fetch("https://script.google.com/macros/s/AKfycbwtvVaSKUqBes5v2mwedwz64lyykEAllIjk7Tylc7owytTKT0MeV9PgI2dMAA_X3tHdLA/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.success) {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Mensaje enviado!',
+          text: 'Gracias por contactarnos, te responderemos pronto.',
+          confirmButtonColor: '#004c8b'
+        });
+        document.getElementById("formDJL").reset();
+      } else {
+        throw new Error(response.error || 'No se pudo enviar el formulario');
+      }
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Hubo un problema al enviar el mensaje.',
+        confirmButtonColor: '#004c8b'
       });
+      console.error("Error:", error);
     });
   });
 </script>
