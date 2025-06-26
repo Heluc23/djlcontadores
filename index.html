@@ -264,21 +264,29 @@
       <h2 class="text-center mb-4">Contáctanos</h2>
       <div class="row">
         <div class="col-lg-6 mx-auto">
-          <form id="formDJL">
-           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required />
-           </div>
-  		   <div class="mb-3">
-    		<label for="correo" class="form-label">Correo electrónico</label>
-    		<input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@email.com" required />
-  		   </div>
-  		   <div class="mb-3">
-    		<label for="mensaje" class="form-label">Mensaje</label>
-    		<textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-           </div>
-  			<button type="submit" class="btn btn-primary w-100" style="transition: transform 0.2s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">Enviar mensaje</button>
-		</form>
+          <form name="formDJL" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="formDJL" />
+  <p class="d-none">
+    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+  </p>
+
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required />
+  </div>
+
+  <div class="mb-3">
+    <label for="correo" class="form-label">Correo electrónico</label>
+    <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@email.com" required />
+  </div>
+
+  <div class="mb-3">
+    <label for="mensaje" class="form-label">Mensaje</label>
+    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" style="transition: transform 0.2s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">Enviar mensaje</button>
+</form>
         </div>
       </div>
       <div class="text-center mt-5">
@@ -309,32 +317,28 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
-</script><script>
-  document.getElementById("formDJL").addEventListener("submit", function (e) {
-    e.preventDefault();
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.forms["formDJL"];
 
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevenimos el envío normal
 
-    fetch("https://script.google.com/macros/s/AKfycbwtvVaSKUqBes5v2mwedwz64lyykEAllIjk7Tylc7owytTKT0MeV9PgI2dMAA_X3tHdLA/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.success) {
+      const data = new FormData(form);
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      })
+      .then(() => {
         Swal.fire("¡Mensaje enviado!", "Gracias por contactarnos. Te responderemos pronto.", "success");
-        this.reset();
-      } else {
-        throw new Error("Error en el envío");
-      }
-    })
-    .catch(error => {
-      Swal.fire("Error", "Hubo un problema al enviar el mensaje.", "error");
-      console.error(error);
+        form.reset();
+      })
+      .catch((error) => {
+        Swal.fire("Error", "Hubo un problema al enviar el mensaje.", "error");
+        console.error("Error al enviar el formulario:", error);
+      });
     });
   });
 </script>
