@@ -79,6 +79,29 @@
       color: #dddddd;
     }
   </style>
+<style>
+  .card-bg-img {
+    background-image: url('https://i.imgur.com/rAKIwfg.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  .card-bg-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* oscurece la imagen */
+    z-index: 1;
+  }
+
+  .card-bg-img .card-body {
+    position: relative;
+    z-index: 2;
+  }
+</style>
 </head>
 <body>
 
@@ -116,9 +139,8 @@
     <div class="row g-4">
       <!-- Quiénes Somos -->
       <div class="col-md-4">
-        <div class="card h-100 shadow-sm text-white" style="position: relative; overflow: hidden;">
-          <img src="https://i.imgur.com/rAKIwfg.jpeg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; opacity: 0.5; z-index: 0;" alt="">
-          <div class="card-body position-relative" style="z-index: 1;">
+        <div class="card h-100 shadow-sm card-bg-img">
+          <div class="card-body">
             <h5 class="card-title">¿Quiénes Somos?</h5>
             <p class="card-text">
               En DJL Contadores somos un equipo de emprendedores bogotanos comprometidos con el crecimiento de otros emprededores.
@@ -130,9 +152,8 @@
 
       <!-- Misión -->
       <div class="col-md-4">
-        <div class="card h-100 shadow-sm text-white" style="position: relative; overflow: hidden;">
-          <img src="https://i.imgur.com/rAKIwfg.jpeg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; opacity: 0.5; z-index: 0;" alt="">
-          <div class="card-body position-relative" style="z-index: 1;">
+        <div class="card h-100 shadow-sm card-bg-img">
+          <div class="card-body">
             <h5 class="card-title">Misión</h5>
             <p class="card-text">
               Impulsar el crecimiento de nuestros clientes, fortaleciendo sus procesos contables, administrativos y tributarios.
@@ -144,9 +165,8 @@
 
       <!-- Visión -->
       <div class="col-md-4">
-        <div class="card h-100 shadow-sm text-white" style="position: relative; overflow: hidden;">
-          <img src="https://i.imgur.com/rAKIwfg.jpeg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; opacity: 0.5; z-index: 0;" alt="">
-          <div class="card-body position-relative" style="z-index: 1;">
+        <div class="card h-100 shadow-sm card-bg-img">
+          <div class="card-body">
             <h5 class="card-title">Visión</h5>
             <p class="card-text">
               Consolidarnos como una firma reconocida por su calidad humana, profesionalismo y cercanía con el cliente. En cinco años, buscamos ser un referente en el sector contable y tributario, destacándonos por generar valor real y relaciones duraderas con cada empresa que confía en nosotros.
