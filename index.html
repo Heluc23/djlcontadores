@@ -79,6 +79,25 @@
       color: #dddddd;
     }
   </style>
+	<style>
+  .card-hover .bg-image {
+    background-image: url('https://i.imgur.com/rAKIwfg.jpeg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+    opacity: 0.5;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1;
+  }
+  .card-hover:hover .bg-image {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  .card-hover .card-body {
+    z-index: 2;
+    position: relative;
+  }
+</style>
 </head>
 <body>
 
@@ -156,26 +175,6 @@
     </div>
   </div>
 </section>
-
-<style>
-  .card-hover .bg-image {
-    background-image: url('https://i.imgur.com/rAKIwfg.jpeg');
-    background-size: cover;
-    background-position: center;
-    transform: scale(1);
-    opacity: 0.5;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    z-index: 1;
-  }
-  .card-hover:hover .bg-image {
-    transform: scale(1.1);
-    opacity: 0.9;
-  }
-  .card-hover .card-body {
-    z-index: 2;
-    position: relative;
-  }
-</style>
 
   <section id="servicios" class="section" style="background-color: #f1f5fa;">
   <div class="container">
