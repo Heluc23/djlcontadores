@@ -258,5 +258,43 @@
     </div>
   </div>
 </section>
+<section id="contacto" class="section">
+  <div class="container">
+    <h2 class="text-center mb-4">Contáctanos</h2>
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
+          <input type="hidden" name="form-name" value="contacto" />
+          <p class="d-none">
+            <label>No llenar si eres humano: <input name="bot-field" /></label>
+          </p>
+
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@email.com" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100" style="transition: transform 0.2s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <p><strong>Email:</strong> infodjlasesores@gmail.com</p>
+      <p><strong>Teléfono:</strong> +57 313 850 3889</p>
+      <p><strong>Dirección:</strong> Carrera 69B # 75 - 38, Bogotá, Colombia</p>
+    </div>
+  </div>
+</section>
 </body>
 </html>
