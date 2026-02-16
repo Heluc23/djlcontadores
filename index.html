@@ -15,34 +15,28 @@
 
   <style>
     :root {
-      --primary-color: #003366;
-      --secondary-color: #004c8b;
-      --accent-color: #ffc107;
+      --primary-color: #003366; /* Azul oscuro principal */
+      --secondary-color: #004c8b; /* Azul medio */
+      --accent-color: #ffc107; /* Amarillo acento */
       --text-font: 'Open Sans', sans-serif;
       --title-font: 'Montserrat', sans-serif;
+      --whatsapp-color: #25d366;
     }
 
     body {
       scroll-behavior: smooth;
       font-family: var(--text-font);
       color: #333;
+      padding-top: 70px; /* Espacio para el navbar fijo */
     }
 
     h1, h2, h3, h4, h5, .navbar-brand, .btn {
       font-family: var(--title-font);
     }
 
-    /* Header y Hero Section */
-    header {
-      background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 76, 139, 0.7)), url('https://i.imgur.com/rAKIwfg.jpeg') center/cover no-repeat;
-      color: white;
-      padding: 140px 0 60px;
-      position: relative;
-    }
-
     /* Navbar Efecto Cristal */
     .navbar {
-      background-color: rgba(0, 51, 102, 0.95);
+      background-color: rgba(0, 51, 102, 0.98) !important;
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
@@ -74,40 +68,46 @@
       box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
     }
 
-    /* Footer */
-    footer {
-      background-color: var(--primary-color);
+    /* Header y Hero Section */
+    header {
+      background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 76, 139, 0.7)), url('https://i.imgur.com/rAKIwfg.jpeg') center/cover no-repeat;
       color: white;
-      text-align: center;
-      padding: 40px 0;
+      padding: 100px 0 60px;
+      position: relative;
+      margin-top: -70px; /* Compensa el padding-top del body */
     }
 
     .section {
-      padding: 80px 15px;
+      padding: 80px 0;
     }
 
-    /* Tarjetas de Servicios */
+    /* NUEVO ESTILO TARJETAS DE SERVICIOS (Fondo blanco) */
     .card-service {
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: none;
-    }
-    .card-service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
-    }
-
-    /* Social Icons */
-    .social-icons a {
-      color: white;
-      margin: 0 10px;
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
-    .social-icons a:hover {
-      color: var(--accent-color);
+      background-color: white;
+      border: 1px solid rgba(0, 51, 102, 0.1); /* Borde azul sutil */
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     }
     
-    /* Hover Effects Cards Inicio */
+    .card-service .service-icon {
+        color: var(--primary-color); /* Íconos azules */
+        transition: transform 0.3s;
+    }
+
+    .card-service h5 {
+        color: var(--primary-color); /* Títulos azules */
+    }
+
+    .card-service:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 51, 102, 0.15) !important;
+      border-color: var(--secondary-color);
+    }
+    .card-service:hover .service-icon {
+        transform: scale(1.1);
+    }
+
+
+    /* Hover Effects Cards Quiénes Somos */
     .card-hover {
       position: relative;
       overflow: hidden;
@@ -122,7 +122,7 @@
       opacity: 0.3;
       z-index: 1;
       transition: transform 0.5s ease, opacity 0.5s ease;
-      background-color: #003366; /* Capa azul de fondo */
+      background-color: #003366;
       background-blend-mode: multiply;
     }
     .card-hover:hover .bg-image {
@@ -133,6 +133,56 @@
       position: relative;
       z-index: 2;
     }
+
+    /* Testimonios (Placeholder) */
+    .testimonial-card {
+        background-color: #f8f9fa;
+        border-left: 4px solid var(--accent-color);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: var(--accent-color);
+    }
+
+    /* BOTÓN FLOTANTE WHATSAPP */
+    .btn-wsp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 30px;
+        right: 30px;
+        background-color: var(--whatsapp-color);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 35px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    .btn-wsp-float:hover {
+        background-color: #1da851;
+        transform: scale(1.1);
+        color: white;
+    }
+
   </style>
 </head>
 <body>
@@ -150,6 +200,7 @@
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
           <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
           <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
             <button onclick="abrirZonaClientes()" class="btn btn-zona-clientes">
@@ -165,154 +216,219 @@
     <div class="container" data-aos="fade-down">
       <img src="https://i.imgur.com/j4h5pEc.png" alt="DJL Logo" style="max-width: 350px; height: auto; margin-bottom: 30px; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));">
       <h1 class="display-4 fw-bold">DJL CONTADORES S.A.S</h1>
-      <p class="lead fw-normal mt-2">Creciendo con Confianza y Precisión</p>
+      <p class="lead fw-normal mt-2 text-white-50">Tu tranquilidad contable es nuestra prioridad.</p>
+       <div class="mt-4">
+        <a href="#servicios" class="btn btn-outline-light btn-lg rounded-pill px-4 me-2 fw-bold">Ver Servicios</a>
+        <a href="https://wa.me/573138503889" target="_blank" class="btn btn-warning btn-lg rounded-pill px-4 fw-bold text-dark"><i class="bi bi-whatsapp"></i> Asesoría Ya</a>
+      </div>
     </div>
   </header>
 
-  <section class="section bg-light" data-aos="fade-up">
+  <section id="servicios" class="section bg-light">
     <div class="container">
-      <div class="row text-center mb-5">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="fw-bold" style="color: var(--primary-color);">Tu Aliado Estratégico</h2>
-          <p class="text-muted">Expertos en asesoría contable, tributaria y financiera para PYMES.</p>
-        </div>
+      <div class="text-center mb-5">
+         <h2 class="fw-bold" style="color: var(--primary-color);">
+          <i class="bi bi-briefcase-fill text-warning"></i> ¿Cómo te ayudamos?
+        </h2>
+        <p class="text-muted w-75 mx-auto">Soluciones integrales para que te olvides del estrés contable y te enfoques en crecer tu negocio.</p>
       </div>
-
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm card-hover text-white">
-            <div class="bg-image"></div>
-            <div class="card-body p-4 text-center">
-              <i class="bi bi-people-fill display-4 mb-3"></i>
-              <h5 class="card-title fw-bold">¿Quiénes Somos?</h5>
-              <p class="card-text small">Equipo de profesionales comprometidos con el crecimiento empresarial, garantizando el cumplimiento normativo y la eficiencia financiera.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm card-hover text-white">
-            <div class="bg-image"></div>
-            <div class="card-body p-4 text-center">
-              <i class="bi bi-rocket-takeoff-fill display-4 mb-3"></i>
-              <h5 class="card-title fw-bold">Misión</h5>
-              <p class="card-text small">Impulsar tu negocio fortaleciendo procesos contables y tributarios, permitiéndote enfocar en lo que realmente importa: tu empresa.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm card-hover text-white">
-            <div class="bg-image"></div>
-            <div class="card-body p-4 text-center">
-              <i class="bi bi-eye-fill display-4 mb-3"></i>
-              <h5 class="card-title fw-bold">Visión</h5>
-              <p class="card-text small">Ser el referente en outsourcing contable por nuestra calidad humana, innovación tecnológica y precisión profesional.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="servicios" class="section">
-    <div class="container">
-      <h2 class="text-center mb-5 fw-bold" style="color: var(--primary-color);">
-        <i class="bi bi-briefcase-fill"></i> Portafolio de Servicios
-      </h2>
       
       <div class="row g-4">
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="card h-100 text-center text-white border-0 shadow card-service" style="background-color: var(--secondary-color);">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card h-100 text-center border-0 shadow-sm card-service">
             <div class="card-body p-4">
-              <i class="bi bi-calculator mb-3" style="font-size: 2.5rem;"></i>
+              <i class="bi bi-calculator service-icon mb-3" style="font-size: 2.5rem;"></i>
               <h5 class="fw-bold">Contabilidad General</h5>
-              <p class="small">Registros precisos y estados financieros bajo normas NIIF.</p>
+              <p class="small text-muted">Mantenemos tus registros al día bajo normas NIIF, listos para cualquier requerimiento.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
-          <div class="card h-100 text-center text-white border-0 shadow card-service" style="background-color: var(--secondary-color);">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="card h-100 text-center border-0 shadow-sm card-service">
             <div class="card-body p-4">
-              <i class="bi bi-file-earmark-text mb-3" style="font-size: 2.5rem;"></i>
-              <h5 class="fw-bold">Impuestos</h5>
-              <p class="small">Planeación y presentación de declaraciones tributarias sin errores.</p>
+              <i class="bi bi-file-earmark-text service-icon mb-3" style="font-size: 2.5rem;"></i>
+              <h5 class="fw-bold">Impuestos y DIAN</h5>
+              <p class="small text-muted">Planeación y presentación oportuna de Renta, IVA e ICA. Evita sanciones.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="card h-100 text-center text-white border-0 shadow card-service" style="background-color: var(--secondary-color);">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card h-100 text-center border-0 shadow-sm card-service">
             <div class="card-body p-4">
-              <i class="bi bi-person-badge mb-3" style="font-size: 2.5rem;"></i>
+              <i class="bi bi-people-fill service-icon mb-3" style="font-size: 2.5rem;"></i>
               <h5 class="fw-bold">Nómina Electrónica</h5>
-              <p class="small">Liquidación y transmisión de nómina con seguridad social al día.</p>
+              <p class="small text-muted">Gestión completa: liquidación, desprendibles y seguridad social. Sin errores.</p>
             </div>
           </div>
         </div>
-         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="250">
-          <div class="card h-100 text-center text-white border-0 shadow card-service" style="background-color: var(--secondary-color);">
+         <div class="col-md-4" data-aos="fade-up" data-aos-delay="250">
+          <div class="card h-100 text-center border-0 shadow-sm card-service">
             <div class="card-body p-4">
-              <i class="bi bi-graph-up-arrow mb-3" style="font-size: 2.5rem;"></i>
+              <i class="bi bi-graph-up-arrow service-icon mb-3" style="font-size: 2.5rem;"></i>
               <h5 class="fw-bold">Asesoría Financiera</h5>
-              <p class="small">Análisis de indicadores para decisiones estratégicas inteligentes.</p>
+              <p class="small text-muted">No solo te damos cifras, te ayudamos a entenderlas para tomar mejores decisiones.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-          <div class="card h-100 text-center text-white border-0 shadow card-service" style="background-color: var(--secondary-color);">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card h-100 text-center border-0 shadow-sm card-service">
             <div class="card-body p-4">
-              <i class="bi bi-search mb-3" style="font-size: 2.5rem;"></i>
-              <h5 class="fw-bold">Auditoría</h5>
-              <p class="small">Revisión preventiva para minimizar riesgos legales.</p>
+              <i class="bi bi-search service-icon mb-3" style="font-size: 2.5rem;"></i>
+              <h5 class="fw-bold">Auditoría Preventiva</h5>
+              <p class="small text-muted">Revisamos tus procesos antes que la entidad de control lo haga. Duerme tranquilo.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="350">
-          <div class="card h-100 text-center text-white border-0 shadow card-service" style="background-color: var(--secondary-color);">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="350">
+          <div class="card h-100 text-center border-0 shadow-sm card-service">
             <div class="card-body p-4">
-              <i class="bi bi-buildings mb-3" style="font-size: 2.5rem;"></i>
-              <h5 class="fw-bold">Consultoría Gerencial</h5>
-              <p class="small">Acompañamiento integral para la creación y gestión de empresa.</p>
+              <i class="bi bi-buildings service-icon mb-3" style="font-size: 2.5rem;"></i>
+              <h5 class="fw-bold">Creación de Empresa</h5>
+              <p class="small text-muted">Te acompañamos desde el registro en Cámara de Comercio hasta tu primera factura.</p>
             </div>
           </div>
         </div>
       </div>
 
       <div class="text-center mt-5" data-aos="fade-up">
-        <a href="#contacto" class="btn btn-warning btn-lg px-5 py-3 shadow fw-bold rounded-pill">
-          Solicitar Diagnóstico Gratuito
+        <a href="https://wa.me/573138503889" target="_blank" class="btn btn-primary btn-lg px-5 py-3 shadow fw-bold rounded-pill" style="background-color: var(--primary-color); border:none;">
+          <i class="bi bi-whatsapp"></i> Solicitar Cotización Rápida
         </a>
       </div>
     </div>
   </section>
-  
-  <section id="contacto" class="section bg-light">
+
+  <section id="nosotros" class="section bg-white" data-aos="fade-up">
     <div class="container">
-      <h2 class="text-center mb-5 fw-bold" style="color: var(--primary-color);">Contáctanos</h2>
+      <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="fw-bold" style="color: var(--primary-color);">Más que contadores, tus aliados.</h2>
+          <p class="text-muted">Conoce al equipo que respalda tu operación.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm card-hover text-white">
+            <div class="bg-image"></div>
+            <div class="card-body p-4 text-center">
+              <i class="bi bi-person-vcard-fill display-4 mb-3 text-warning"></i>
+              <h5 class="card-title fw-bold">¿Quiénes Somos?</h5>
+              <p class="card-text small">Equipo de profesionales bogotanos comprometidos con el crecimiento de la pequeña y mediana empresa a través de la tecnología y la cercanía humana.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm card-hover text-white">
+            <div class="bg-image"></div>
+            <div class="card-body p-4 text-center">
+              <i class="bi bi-rocket-takeoff-fill display-4 mb-3 text-warning"></i>
+              <h5 class="card-title fw-bold">Misión</h5>
+              <p class="card-text small">Blindar contable y tributariamente a nuestros clientes, permitiéndoles enfocarse 100% en la estrategia de su negocio.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm card-hover text-white">
+            <div class="bg-image"></div>
+            <div class="card-body p-4 text-center">
+              <i class="bi bi-eye-fill display-4 mb-3 text-warning"></i>
+              <h5 class="card-title fw-bold">Visión</h5>
+              <p class="card-text small">Ser la firma de outsourcing de referencia en Bogotá, reconocidos por modernizar la contabilidad tradicional con herramientas digitales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-light">
+      <div class="container">
+          <h2 class="text-center fw-bold mb-5" style="color: var(--primary-color);">Confían en Nosotros</h2>
+          
+          <div class="row g-4 mb-5">
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="card h-100 border-0 shadow-sm p-4 testimonial-card">
+                      <i class="bi bi-quote fs-1 text-warning mb-3"></i>
+                      <p class="fst-italic mb-3">"Desde que DJL maneja nuestra nómina, los errores desaparecieron. El acceso a los reportes en línea es excelente."</p>
+                      <div class="d-flex align-items-center">
+                          <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> <div>
+                              <h6 class="fw-bold mb-0">Carlos A.</h6>
+                              <small class="text-muted">Gerente PYME Sector Salud</small>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100 border-0 shadow-sm p-4 testimonial-card">
+                    <i class="bi bi-quote fs-1 text-warning mb-3"></i>
+                    <p class="fst-italic mb-3">"Excelente asesoría tributaria. Nos ayudaron a organizar años de desorden y a pagar lo justo."</p>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> <div>
+                            <h6 class="fw-bold mb-0">Andrea M.</h6>
+                            <small class="text-muted">Emprendedora Digital</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100 border-0 shadow-sm p-4 testimonial-card">
+                    <i class="bi bi-quote fs-1 text-warning mb-3"></i>
+                    <p class="fst-italic mb-3">"Profesionales, rápidos y siempre disponibles por WhatsApp. Son un brazo más de nuestra empresa."</p>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> <div>
+                            <h6 class="fw-bold mb-0">Jorge R.</h6>
+                            <small class="text-muted">Sector Construcción</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="row text-center align-items-center justify-content-center opacity-50 mt-5" data-aos="fade-in">
+               <div class="col-6 col-md-3 mb-4 mb-md-0 fw-bold text-muted h4">EMPRESA 1</div>
+               <div class="col-6 col-md-3 mb-4 mb-md-0 fw-bold text-muted h4">EMPRESA 2</div>
+               <div class="col-6 col-md-3 mb-4 mb-md-0 fw-bold text-muted h4">EMPRESA 3</div>
+               <div class="col-6 col-md-3 fw-bold text-muted h4">EMPRESA 4</div>
+           </div>
+
+      </div>
+  </section>
+  
+  <section id="contacto" class="section bg-white">
+    <div class="container">
       <div class="row justify-content-center">
+        <div class="col-lg-8 text-center mb-5">
+             <h2 class="fw-bold" style="color: var(--primary-color);">¿Hablamos?</h2>
+             <p class="text-muted">Déjanos tus datos y te contactaremos hoy mismo para un diagnóstico inicial.</p>
+        </div>
         <div class="col-lg-6">
-          <div class="card shadow-lg border-0">
+          <div class="card shadow-lg border-0" style="border-top: 5px solid var(--accent-color) !important;">
             <div class="card-body p-5">
               <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
                 <input type="hidden" name="form-name" value="contacto" />
                 <p class="d-none"><label>No llenar: <input name="bot-field" /></label></p>
 
                 <div class="mb-3">
-                  <label for="nombre" class="form-label fw-bold">Nombre Completo</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre" required />
+                  <label for="nombre" class="form-label fw-bold">Nombre Completo / Empresa</label>
+                  <input type="text" class="form-control bg-light" id="nombre" name="nombre" required />
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="form-label fw-bold">Teléfono / WhatsApp</label>
-                  <input type="text" class="form-control" id="telefono" name="telefono" required />
+                  <input type="text" class="form-control bg-light" id="telefono" name="telefono" required />
                 </div>
                 <div class="mb-3">
                   <label for="correo" class="form-label fw-bold">Correo Electrónico</label>
-                  <input type="email" class="form-control" id="correo" name="correo" required />
+                  <input type="email" class="form-control bg-light" id="correo" name="correo" required />
                 </div>
                 <div class="mb-3">
-                  <label for="mensaje" class="form-label fw-bold">¿En qué podemos ayudarte?</label>
-                  <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
+                  <label for="mensaje" class="form-label fw-bold">¿En qué servicio estás interesado?</label>
+                  <textarea class="form-control bg-light" id="mensaje" name="mensaje" rows="3" required placeholder="Ej: Necesito liquidar nómina de 5 empleados..."></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold" style="background-color: var(--primary-color);">ENVIAR MENSAJE</button>
+                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill" style="background-color: var(--primary-color); border:none; font-size: 1.1rem;">
+                    <i class="bi bi-send-fill me-2"></i> ENVIAR CONSULTA
+                </button>
               </form>
             </div>
           </div>
@@ -324,69 +440,74 @@
   <footer>
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
-          <h5 class="fw-bold">DJL CONTADORES S.A.S</h5>
-          <p class="small mb-1"><i class="bi bi-geo-alt-fill"></i> Carrera 69B # 75 - 38, Bogotá</p>
-          <p class="small mb-1"><i class="bi bi-whatsapp"></i> +57 313 850 3889</p>
-          <p class="small"><i class="bi bi-envelope-fill"></i> infodjlasesores@gmail.com</p>
+        <div class="col-md-4 text-md-start text-center mb-4 mb-md-0">
+           <img src="https://i.imgur.com/j4h5pEc.png" alt="Logo DJL Footer" style="height:40px; filter: brightness(0) invert(1); opacity: 0.7;" class="mb-3">
+          <p class="small mb-1 text-white-50">Outsourcing contable moderno para empresas que quieren crecer.</p>
         </div>
-        <div class="col-md-6 text-md-end text-center">
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Contacto Directo</h5>
+          <p class="small mb-1"><i class="bi bi-whatsapp text-warning"></i> +57 313 850 3889</p>
+          <p class="small mb-1"><i class="bi bi-envelope-fill text-warning"></i> infodjlasesores@gmail.com</p>
+          <p class="small"><i class="bi bi-geo-alt-fill text-warning"></i> Bogotá, Colombia</p>
+        </div>
+        <div class="col-md-4 text-md-end text-center">
+          <h5 class="fw-bold mb-3">Síguenos</h5>
           <div class="social-icons mb-3">
             <a href="https://www.facebook.com/share/16B83X1mb7/" target="_blank"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com/_djlcontadores/" target="_blank"><i class="bi bi-instagram"></i></a>
             <a href="https://wa.me/573138503889" target="_blank"><i class="bi bi-whatsapp"></i></a>
           </div>
-          <p class="small text-white-50">&copy; <span id="year"></span> DJL Contadores S.A.S - Todos los derechos reservados.</p>
+          <p class="small text-white-50 mt-4">&copy; <span id="year"></span> DJL Contadores S.A.S.</p>
         </div>
       </div>
     </div>
   </footer>
 
+  <a href="https://wa.me/573138503889?text=Hola%20DJL%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20contables." class="btn-wsp-float" target="_blank" title="Contactar por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init();
-    // Actualizar año automáticamente
+    AOS.init({
+        once: true, /* La animación solo ocurre una vez al bajar */
+        duration: 800
+    });
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // LÓGICA DE ZONA DE CLIENTES (INTEGRACIÓN FUTURA)
+    // LÓGICA DE ZONA DE CLIENTES (Pendiente de conectar con Google Sheets)
     function abrirZonaClientes() {
       Swal.fire({
-        title: '<span style="color:#003366">Acceso Clientes DJL</span>',
-        text: 'Ingresa tu NIT o Código de Cliente para consultar tu Nómina y Calendario.',
+        title: '<span style="color:#003366; font-family: Montserrat">Acceso Clientes DJL</span>',
+        html: '<p style="color:#555">Ingresa tu NIT o Código asignado para consultar tu Nómina y Calendario Tributario.</p>',
         input: 'text',
         inputPlaceholder: 'Ej: 900123456',
         inputAttributes: {
           autocapitalize: 'off'
         },
         showCancelButton: true,
-        confirmButtonText: 'Ingresar',
+        confirmButtonText: 'Ingresar <i class="bi bi-arrow-right"></i>',
         confirmButtonColor: '#003366',
         cancelButtonText: 'Cancelar',
-        cancelButtonColor: '#d33',
-        footer: '<a href="#contacto" style="text-decoration:none; color:#555">¿Olvidaste tu código? Solicítalo aquí</a>',
-        backdrop: `
-          rgba(0,0,50,0.6)
-        `
+        cancelButtonColor: '#6c757d',
+        footer: '<a href="https://wa.me/573138503889" target="_blank" style="text-decoration:none; color:#003366; font-weight:600"><i class="bi bi-whatsapp"></i> Solicitar mi código de acceso</a>',
+        backdrop: `rgba(0, 51, 102, 0.4)`
       }).then((result) => {
         if (result.isConfirmed) {
           const usuario = result.value;
           // AQUÍ CONECTAREMOS EL GOOGLE SHEET MÁS ADELANTE
-          // Por ahora, simulamos éxito para probar el diseño
           if(usuario) {
             Swal.fire({
               icon: 'success',
-              title: '¡Bienvenido!',
-              text: 'Estamos conectando con tu base de datos...',
+              title: '¡Validando Acceso!',
+              text: 'Estamos conectando con el servidor seguro...',
               timer: 2000,
               timerProgressBar: true,
-              didOpen: () => {
-                Swal.showLoading()
-              }
+              didOpen: () => { Swal.showLoading() }
             }).then(() => {
-               // AQUÍ IRÁ LA REDIRECCIÓN A TU APP
-               // window.location.href = "URL_DE_TU_APP_SCRIPT";
-               Swal.fire('Prueba Exitosa', 'Aquí se abrirá la App de Nómina/Calendario para el cliente: ' + usuario, 'info');
+               // AQUÍ IRÁ LA REDIRECCIÓN FINAL
+               Swal.fire('Demo de Acceso', 'El sistema reconoció el código: ' + usuario + '. En el siguiente paso, esto abrirá tu AppSheet/Google Sheet.', 'info');
             });
           }
         }
