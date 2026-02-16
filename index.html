@@ -81,20 +81,20 @@
       padding: 80px 0;
     }
 
-    /* NUEVO ESTILO TARJETAS DE SERVICIOS (Fondo blanco) */
+    /* TARJETAS DE SERVICIOS */
     .card-service {
       background-color: white;
-      border: 1px solid rgba(0, 51, 102, 0.1); /* Borde azul sutil */
+      border: 1px solid rgba(0, 51, 102, 0.1);
       transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     }
     
     .card-service .service-icon {
-        color: var(--primary-color); /* Íconos azules */
+        color: var(--primary-color);
         transition: transform 0.3s;
     }
 
     .card-service h5 {
-        color: var(--primary-color); /* Títulos azules */
+        color: var(--primary-color);
     }
 
     .card-service:hover {
@@ -107,7 +107,7 @@
     }
 
 
-    /* Hover Effects Cards Quiénes Somos */
+    /* Cards Quiénes Somos */
     .card-hover {
       position: relative;
       overflow: hidden;
@@ -134,7 +134,7 @@
       z-index: 2;
     }
 
-    /* Testimonios (Placeholder) */
+    /* Testimonios */
     .testimonial-card {
         background-color: #f8f9fa;
         border-left: 4px solid var(--accent-color);
@@ -157,30 +157,89 @@
       color: var(--accent-color);
     }
 
-    /* BOTÓN FLOTANTE WHATSAPP */
-    .btn-wsp-float {
+    /* --- ESTILOS BOTÓN FLOTANTE DOBLE --- */
+    .wsp-container {
         position: fixed;
-        width: 60px;
-        height: 60px;
         bottom: 30px;
         right: 30px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column-reverse; /* Se despliega hacia arriba */
+        align-items: end;
+        gap: 10px;
+    }
+    
+    .btn-wsp-main {
+        width: 65px;
+        height: 65px;
         background-color: var(--whatsapp-color);
         color: white;
         border-radius: 50%;
         text-align: center;
-        font-size: 35px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        z-index: 1000;
+        font-size: 38px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         display: flex;
         justify-content: center;
         align-items: center;
         text-decoration: none;
-        transition: all 0.3s;
+        transition: transform 0.3s;
+        cursor: pointer;
+        animation: pulse 2s infinite;
     }
-    .btn-wsp-float:hover {
+
+    .btn-wsp-main:hover {
         background-color: #1da851;
         transform: scale(1.1);
-        color: white;
+    }
+
+    /* Opciones ocultas por defecto */
+    .wsp-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none; /* No clickeable si está oculto */
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Rebote suave */
+        margin-bottom: 10px;
+    }
+
+    /* Mostrar opciones al pasar el mouse (PC) o tocar (Móvil) */
+    .wsp-container:hover .wsp-options, 
+    .wsp-container:focus-within .wsp-options {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .btn-wsp-sub {
+        background-color: white;
+        color: #003366;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+        border-left: 5px solid #25d366;
+        transition: transform 0.2s;
+        width: max-content;
+    }
+    
+    .btn-wsp-sub:hover {
+        background-color: #f1f1f1;
+        transform: translateX(-5px); /* Se mueve un poco a la izquierda al hover */
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
   </style>
@@ -352,7 +411,8 @@
                       <i class="bi bi-quote fs-1 text-warning mb-3"></i>
                       <p class="fst-italic mb-3">"Desde que DJL maneja nuestra nómina, los errores desaparecieron. El acceso a los reportes en línea es excelente."</p>
                       <div class="d-flex align-items-center">
-                          <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> <div>
+                          <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> 
+                          <div>
                               <h6 class="fw-bold mb-0">Carlos A.</h6>
                               <small class="text-muted">Gerente PYME Sector Salud</small>
                           </div>
@@ -364,7 +424,8 @@
                     <i class="bi bi-quote fs-1 text-warning mb-3"></i>
                     <p class="fst-italic mb-3">"Excelente asesoría tributaria. Nos ayudaron a organizar años de desorden y a pagar lo justo."</p>
                     <div class="d-flex align-items-center">
-                        <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> <div>
+                        <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div>
+                        <div>
                             <h6 class="fw-bold mb-0">Andrea M.</h6>
                             <small class="text-muted">Emprendedora Digital</small>
                         </div>
@@ -376,7 +437,8 @@
                     <i class="bi bi-quote fs-1 text-warning mb-3"></i>
                     <p class="fst-italic mb-3">"Profesionales, rápidos y siempre disponibles por WhatsApp. Son un brazo más de nuestra empresa."</p>
                     <div class="d-flex align-items-center">
-                        <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div> <div>
+                        <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px;"></div>
+                        <div>
                             <h6 class="fw-bold mb-0">Jorge R.</h6>
                             <small class="text-muted">Sector Construcción</small>
                         </div>
@@ -385,7 +447,7 @@
             </div>
           </div>
 
-          <div class="row text-center align-items-center justify-content-center opacity-50 mt-5" data-aos="fade-in">
+           <div class="row text-center align-items-center justify-content-center opacity-50 mt-5" data-aos="fade-in">
                <div class="col-6 col-md-3 mb-4 mb-md-0 fw-bold text-muted h4">EMPRESA 1</div>
                <div class="col-6 col-md-3 mb-4 mb-md-0 fw-bold text-muted h4">EMPRESA 2</div>
                <div class="col-6 col-md-3 mb-4 mb-md-0 fw-bold text-muted h4">EMPRESA 3</div>
@@ -446,8 +508,19 @@
         </div>
         <div class="col-md-4 text-center mb-4 mb-md-0">
           <h5 class="fw-bold mb-3">Contacto Directo</h5>
-          <p class="small mb-1"><i class="bi bi-whatsapp text-warning"></i> +57 313 850 3889</p>
-          <p class="small mb-1"><i class="bi bi-envelope-fill text-warning"></i> infodjlasesores@gmail.com</p>
+          
+          <p class="small mb-2">
+            <a href="https://wa.me/573138503889" target="_blank" class="text-decoration-none text-white opacity-75">
+              <i class="bi bi-whatsapp text-warning me-2"></i> +57 313 850 3889
+            </a>
+          </p>
+          <p class="small mb-2">
+            <a href="https://wa.me/573165166133" target="_blank" class="text-decoration-none text-white opacity-75">
+              <i class="bi bi-whatsapp text-warning me-2"></i> +57 316 516 6133
+            </a>
+          </p>
+
+          <p class="small mb-1 mt-3"><i class="bi bi-envelope-fill text-warning"></i> infodjlasesores@gmail.com</p>
           <p class="small"><i class="bi bi-geo-alt-fill text-warning"></i> Bogotá, Colombia</p>
         </div>
         <div class="col-md-4 text-md-end text-center">
@@ -463,9 +536,19 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/573138503889?text=Hola%20DJL%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20contables." class="btn-wsp-float" target="_blank" title="Contactar por WhatsApp">
-    <i class="bi bi-whatsapp"></i>
-  </a>
+  <div class="wsp-container" tabindex="0"> <div class="btn-wsp-main">
+          <i class="bi bi-whatsapp"></i>
+      </div>
+
+      <div class="wsp-options">
+          <a href="https://wa.me/573138503889?text=Hola%2C%20necesito%20asesor%C3%ADa%20contable." target="_blank" class="btn-wsp-sub">
+              Consultor Senior 1 <i class="bi bi-person-check-fill ms-2 text-success"></i>
+          </a>
+          <a href="https://wa.me/573165166133?text=Hola%2C%20necesito%20asesor%C3%ADa%20contable." target="_blank" class="btn-wsp-sub">
+              Consultor Senior 2 <i class="bi bi-person-check-fill ms-2 text-success"></i>
+          </a>
+      </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
