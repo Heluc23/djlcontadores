@@ -189,10 +189,10 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="https://i.imgur.com/j4h5pEc.png" alt="Logo DJL" style="height:50px; margin-right:10px; filter: brightness(0) invert(1);">
-        <span style="font-size: 1.2rem; font-weight: 700;">DJL CONTADORES</span>
+      <a class="navbar-brand" href="#">
+        <img src="https://i.imgur.com/j4h5pEc.png" alt="Logo DJL" style="height:55px; filter: brightness(0) invert(1);">
       </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -471,12 +471,12 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-        once: true, /* La animación solo ocurre una vez al bajar */
+        once: true,
         duration: 800
     });
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // LÓGICA DE ZONA DE CLIENTES (Pendiente de conectar con Google Sheets)
+    // LÓGICA DE ZONA DE CLIENTES (Pendiente de conectar)
     function abrirZonaClientes() {
       Swal.fire({
         title: '<span style="color:#003366; font-family: Montserrat">Acceso Clientes DJL</span>',
@@ -496,7 +496,7 @@
       }).then((result) => {
         if (result.isConfirmed) {
           const usuario = result.value;
-          // AQUÍ CONECTAREMOS EL GOOGLE SHEET MÁS ADELANTE
+          // AQUÍ CONECTAREMOS EL GOOGLE SHEET
           if(usuario) {
             Swal.fire({
               icon: 'success',
@@ -506,8 +506,7 @@
               timerProgressBar: true,
               didOpen: () => { Swal.showLoading() }
             }).then(() => {
-               // AQUÍ IRÁ LA REDIRECCIÓN FINAL
-               Swal.fire('Demo de Acceso', 'El sistema reconoció el código: ' + usuario + '. En el siguiente paso, esto abrirá tu AppSheet/Google Sheet.', 'info');
+               Swal.fire('Demo de Acceso', 'El sistema reconoció el código: ' + usuario, 'info');
             });
           }
         }
