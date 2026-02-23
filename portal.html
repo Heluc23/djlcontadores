@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Clientes - DJL Contadores</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      color: #002244;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    input[type="text"]:focus {
+      border-color: #003366;
+      outline: none;
+    }
+    button {
+      background-color: #003366;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #001a33;
+    }
+    #mensaje {
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Portal de Clientes</h2>
+    <p>Ingresa tu NIT para acceder a la información tributaria y de nómina</p>
+    
+    <input type="text" id="nitInput" placeholder="Ej: 900123456" autocomplete="off" />
+    <button onclick="validarAcceso()" id="btnIngresar">Ingresar</button>
+    
+    <div id="mensaje"></div>
+  </div>
+
+  <script>
+    function validarAcceso() {
+      var nit = document.getElementById("nitInput").value;
+      var mensajeDiv = document.getElementById("mensaje");
+      var btn = document.getElementById("btnIngresar");
+      
+      if (nit.trim() === "") {
+        mensajeDiv.style.color = "#d9534f"; 
+        mensajeDiv.innerText = "Por favor, ingresa un NIT válido.";
+        return;
+      }
+
+      mensajeDiv.style.color = "#002244"; 
+      mensajeDiv.innerText = "Validando acceso...";
+      btn.disabled = true;
+
+      // Tu URL exacta de Google Apps Script ya probada
+      var urlBase = "https://script.google.com/macros/s/AKfycbz8hm-sdj2z3sSoWNEEqSoVCfjqUQPiYXzLqq8hc9VT_vrLVa4J-f3Xl1BGX6wcN-i_/exec";
+      
+      var callbackName = 'respuestaGoogle_' + Math.round(100000 * Math.random());
+
+      window[callbackName] = function(res) {
+        btn.disabled = false;
+        
+        if (res.exito) {
+          mensajeDiv.style.color = "#5cb85c"; 
+          mensajeDiv.innerText = res.mensaje;
+          
+          if (res.linkNomina && res.linkNomina !== "") {
+            // AQUÍ ESTÁ EL CAMBIO CLAVE: window.top rompe la seguridad del marco y redirige
+            window.top.location.href = res.linkNomina;
+          } else {
+            mensajeDiv.style.color = "#d9534f"; 
+            mensajeDiv.innerText = "El cliente está activo, pero no tiene enlace asignado.";
+          }
+        } else {
+          mensajeDiv.style.color = "#d9534f"; 
+          mensajeDiv.innerText = res.mensaje;
+        }
+        
+        delete window[callbackName];
+        document.body.removeChild(script);
+      };
+
+      var script = document.createElement('script');
+      script.src = urlBase + "?nit=" + encodeURIComponent(nit) + "&callback=" + callbackName;
+      
+      script.onerror = function() {
+        btn.disabled = false;
+        mensajeDiv.style.color = "#d9534f";
+        mensajeDiv.innerText = "Error de red. Verifica la conexión.";
+        delete window[callbackName];
+        document.body.removeChild(script);
+      };
+
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+</html>
