@@ -74,7 +74,8 @@
     <p>Ingresa tu NIT para acceder a la información tributaria y de nómina</p>
     
     <input type="text" id="nitInput" placeholder="Ej: 900123456" autocomplete="off" />
-    <button onclick="validarAcceso()" id="btnIngresar">Ingresar</button>
+    
+    <button type="button" onclick="validarAcceso()" id="btnIngresar">Ingresar</button>
     
     <div id="mensaje"></div>
   </div>
@@ -108,7 +109,7 @@
           mensajeDiv.innerText = res.mensaje;
           
           if (res.linkNomina && res.linkNomina !== "") {
-            // AQUÍ ESTÁ EL CAMBIO CLAVE: window.top rompe la seguridad del marco y redirige
+            // Redirección forzada rompiendo el marco
             window.top.location.href = res.linkNomina;
           } else {
             mensajeDiv.style.color = "#d9534f"; 
