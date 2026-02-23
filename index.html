@@ -106,7 +106,6 @@
         transform: scale(1.1);
     }
 
-
     /* Cards Quiénes Somos */
     .card-hover {
       position: relative;
@@ -563,9 +562,6 @@
     // ==========================================
     // 🔗 CONEXIÓN CON GOOGLE SHEETS (TU API)
     // ==========================================
-    // ==========================================
-    // 🔗 CONEXIÓN CON GOOGLE SHEETS (TU API)
-    // ==========================================
     const API_URL = "https://script.google.com/macros/s/AKfycbz8hm-sdj2z3sSoWNEEqSoVCfjqUQPiYXzLqq8hc9VT_vrLVa4J-f3Xl1BGX6wcN-i_/exec";
 
     function abrirZonaClientes() {
@@ -586,9 +582,8 @@
         backdrop: `rgba(0, 51, 102, 0.4)`,
         showLoaderOnConfirm: true,
         preConfirm: (login) => {
-          // --- AQUÍ ESTÁ LA MAGIA: Reemplazamos fetch por JSONP en una Promesa ---
           return new Promise((resolve, reject) => {
-            var callbackName = 'respuestaGoogle_' + Math.round(100000 * Math.random());
+            var callbackName = 'respuestaGoogle_' + Date.now() + '_' + Math.round(Math.random() * 10000);
             var script = document.createElement('script');
 
             window[callbackName] = function(res) {
@@ -597,17 +592,16 @@
               resolve(res); 
             };
 
-            script.src = API_URL + "?nit=" + encodeURIComponent(login) + "&callback=" + callbackName;
-
             script.onerror = function() {
               delete window[callbackName];
               document.body.removeChild(script);
-              reject(new Error("El servidor de Google bloqueó la conexión."));
+              reject(new Error("Error de red. Verifica que la URL de Apps Script esté correcta y pública."));
             };
 
+            script.src = API_URL + "?nit=" + encodeURIComponent(login) + "&callback=" + callbackName;
             document.body.appendChild(script);
           }).catch(error => {
-            Swal.showValidationMessage(`Error de conexión: ${error.message}`);
+            Swal.showValidationMessage(`Error: ${error.message}`);
           });
         },
         allowOutsideClick: () => !Swal.isLoading()
@@ -615,11 +609,9 @@
         if (result.isConfirmed) {
           const data = result.value;
           
-          if (data.exito) {
-            // USUARIO ENCONTRADO -> MOSTRAR DASHBOARD
+          if (data && data.exito) {
             let htmlCalendario = "";
             
-            // Construir lista de impuestos (Si luego lo agregamos a Google)
             if (data.calendario && data.calendario.length > 0) {
                 htmlCalendario = `<ul style="text-align:left; margin-top:15px; list-style:none; padding:0; max-height: 200px; overflow-y: auto;">`;
                 data.calendario.forEach(evento => {
@@ -633,11 +625,10 @@
                 htmlCalendario = `<div class="alert alert-info mt-3"><i class="bi bi-check-circle"></i> No tienes vencimientos próximos registrados.</div>`;
             }
 
-            // Validamos que los datos existan para que no se rompa
-            let nombreCliente = data.datos ? data.datos.nombre : "Cliente";
+            // Validaciones seguras para que no se rompa si falta un dato
+            let nombreCliente = (data.datos && data.datos.nombre) ? data.datos.nombre : "Cliente";
             let linkDocumentos = data.linkNomina ? data.linkNomina : "#";
 
-            // Mostrar Ventana de Éxito con los datos
             Swal.fire({
               title: `<span style="color:#003366">¡Hola, ${nombreCliente}!</span>`,
               html: `
@@ -645,7 +636,7 @@
                     <p class="mb-4">Estado del servicio: <strong class="text-success"><i class="bi bi-circle-fill" style="font-size:0.7rem"></i> ACTIVO</strong></p>
                     
                     <div class="d-grid gap-2 mb-4">
-                        <a href="${linkDocumentos}" target="_blank" class="btn btn-primary btn-lg shadow fw-bold" style="background-color:#003366; border:none">
+                        <a href="${linkDocumentos}" target="_top" class="btn btn-primary btn-lg shadow fw-bold" style="background-color:#003366; border:none">
                             <i class="bi bi-folder-fill me-2 text-warning"></i> Ver Mis Documentos
                         </a>
                         <small class="text-muted">Accede aquí a tus Nóminas, Rentas y Balances.</small>
@@ -663,11 +654,10 @@
             });
 
           } else {
-            // USUARIO NO ENCONTRADO O ERROR
             Swal.fire({
                 icon: 'error',
                 title: 'Acceso Denegado',
-                text: data.mensaje || 'El NIT ingresado no existe o está inactivo.',
+                text: (data && data.mensaje) ? data.mensaje : 'El NIT ingresado no existe o está inactivo.',
                 confirmButtonColor: '#003366',
                 footer: 'Verifica el número o contáctanos por WhatsApp.'
             });
@@ -678,5 +668,3 @@
   </script>
 </body>
 </html>
-
-
