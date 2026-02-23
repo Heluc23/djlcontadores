@@ -15,9 +15,9 @@
 
   <style>
     :root {
-      --primary-color: #003366; /* Azul oscuro principal */
-      --secondary-color: #004c8b; /* Azul medio */
-      --accent-color: #ffc107; /* Amarillo acento */
+      --primary-color: #003366; 
+      --secondary-color: #004c8b; 
+      --accent-color: #ffc107; 
       --text-font: 'Open Sans', sans-serif;
       --title-font: 'Montserrat', sans-serif;
       --whatsapp-color: #25d366;
@@ -27,14 +27,13 @@
       scroll-behavior: smooth;
       font-family: var(--text-font);
       color: #333;
-      padding-top: 70px; /* Espacio para el navbar fijo */
+      padding-top: 70px; 
     }
 
     h1, h2, h3, h4, h5, .navbar-brand, .btn {
       font-family: var(--title-font);
     }
 
-    /* Navbar Efecto Cristal */
     .navbar {
       background-color: rgba(0, 51, 102, 0.98) !important;
       backdrop-filter: blur(10px);
@@ -51,7 +50,6 @@
       color: var(--accent-color) !important;
     }
 
-    /* Botón Zona Clientes */
     .btn-zona-clientes {
       background-color: var(--accent-color);
       color: #002244;
@@ -68,20 +66,18 @@
       box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
     }
 
-    /* Header y Hero Section */
     header {
       background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 76, 139, 0.7)), url('https://i.imgur.com/rAKIwfg.jpeg') center/cover no-repeat;
       color: white;
       padding: 100px 0 60px;
       position: relative;
-      margin-top: -70px; /* Compensa el padding-top del body */
+      margin-top: -70px; 
     }
 
     .section {
       padding: 80px 0;
     }
 
-    /* TARJETAS DE SERVICIOS */
     .card-service {
       background-color: white;
       border: 1px solid rgba(0, 51, 102, 0.1);
@@ -106,7 +102,6 @@
         transform: scale(1.1);
     }
 
-    /* Cards Quiénes Somos */
     .card-hover {
       position: relative;
       overflow: hidden;
@@ -133,13 +128,11 @@
       z-index: 2;
     }
 
-    /* Testimonios */
     .testimonial-card {
         background-color: #f8f9fa;
         border-left: 4px solid var(--accent-color);
     }
 
-    /* Footer */
     footer {
       background-color: var(--primary-color);
       color: white;
@@ -156,14 +149,13 @@
       color: var(--accent-color);
     }
 
-    /* --- ESTILOS BOTÓN FLOTANTE DOBLE --- */
     .wsp-container {
         position: fixed;
         bottom: 30px;
         right: 30px;
         z-index: 1000;
         display: flex;
-        flex-direction: column-reverse; /* Se despliega hacia arriba */
+        flex-direction: column-reverse; 
         align-items: end;
         gap: 10px;
     }
@@ -191,19 +183,17 @@
         transform: scale(1.1);
     }
 
-    /* Opciones ocultas por defecto */
     .wsp-options {
         display: flex;
         flex-direction: column;
         gap: 10px;
         opacity: 0;
         transform: translateY(20px);
-        pointer-events: none; /* No clickeable si está oculto */
-        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Rebote suave */
+        pointer-events: none; 
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
         margin-bottom: 10px;
     }
 
-    /* Mostrar opciones al pasar el mouse (PC) o tocar (Móvil) */
     .wsp-container:hover .wsp-options, 
     .wsp-container:focus-within .wsp-options {
         opacity: 1;
@@ -232,7 +222,7 @@
     
     .btn-wsp-sub:hover {
         background-color: #f1f1f1;
-        transform: translateX(-5px); /* Se mueve un poco a la izquierda al hover */
+        transform: translateX(-5px); 
     }
 
     @keyframes pulse {
@@ -625,9 +615,10 @@
                 htmlCalendario = `<div class="alert alert-info mt-3"><i class="bi bi-check-circle"></i> No tienes vencimientos próximos registrados.</div>`;
             }
 
-            // Validaciones seguras para que no se rompa si falta un dato
+            // Validaciones seguras
             let nombreCliente = (data.datos && data.datos.nombre) ? data.datos.nombre : "Cliente";
-            let linkDocumentos = data.linkNomina ? data.linkNomina : "#";
+            let linkDocumentos = (data.datos && data.datos.linkDocumentos) ? data.datos.linkDocumentos : "#";
+            let linkCalendario = (data.datos && data.datos.linkCalendario) ? data.datos.linkCalendario : "#";
 
             Swal.fire({
               title: `<span style="color:#003366">¡Hola, ${nombreCliente}!</span>`,
@@ -636,10 +627,12 @@
                     <p class="mb-4">Estado del servicio: <strong class="text-success"><i class="bi bi-circle-fill" style="font-size:0.7rem"></i> ACTIVO</strong></p>
                     
                     <div class="d-grid gap-2 mb-4">
-                        <a href="${linkDocumentos}" target="_top" class="btn btn-primary btn-lg shadow fw-bold" style="background-color:#003366; border:none">
+                        <a href="${linkDocumentos}" target="_blank" class="btn btn-primary btn-lg shadow fw-bold" style="background-color:#003366; border:none">
                             <i class="bi bi-folder-fill me-2 text-warning"></i> Ver Mis Documentos
                         </a>
-                        <small class="text-muted">Accede aquí a tus Nóminas, Rentas y Balances.</small>
+                        <a href="${linkCalendario}" target="_blank" class="btn btn-warning btn-lg shadow fw-bold" style="color:#002244; border:none">
+                            <i class="bi bi-calendar-check-fill me-2"></i> Ir al Calendario Completo
+                        </a>
                     </div>
 
                     <h5 class="mt-2 mb-2 text-start border-bottom pb-2 fw-bold" style="color:#003366">
